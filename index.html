@@ -61,6 +61,7 @@
   .video iframe { width: 100%; height: 100%; border: 0; }
   .facts { margin-top: 24px; display: grid; gap: 6px; font-size: 14px; color: #888; }
   .facts s { color: #555; }
+  #victim { margin-top: 18px; font-size: 15px; font-weight: 600; color: #fff; background: rgba(255,255,255,.08); border: 1px solid #333; border-radius: 999px; padding: 6px 14px; }
   #reveal button { margin-top: 24px; border-color: #333; color: #aaa; font-weight: 500; }
 </style>
 </head>
@@ -101,6 +102,7 @@
 <div id="reveal" role="dialog" aria-label="Surprise">
   <h2>Scouting the <span>competition</span>? 👀<br>Undacortex AI does not exist.</h2>
   <p>No lab. No models. No research. You clicked a link in a Kaggle bio hoping for an edge, im sorry to let you down</p>
+  <div id="victim" hidden></div>
   <div class="video" id="video"></div>
   <div class="facts">
     <div><s>Frontier reasoning model</s> &nbsp;→&nbsp; 1 HTML file</div>
@@ -112,6 +114,16 @@
 </div>
 
 <script>
+  const NS = 'undacortex-hm';
+  const noTrack = (() => { try { if (new URLSearchParams(location.search).has('me')) localStorage.setItem('uc-me', '1'); return localStorage.getItem('uc-me') === '1'; } catch (e) { return false; } })();
+  const hit = key => noTrack ? Promise.resolve(null) : fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + key).then(r => r.json()).then(j => j.value).catch(() => null);
+  let counted = false;
+  const countRickroll = site => {
+    if (counted) return; counted = true;
+    hit(site + '-rickrolls');
+    hit('total-rickrolls').then(n => { if (n) { const v = document.getElementById('victim'); v.textContent = 'You are rickroll victim #' + n + '.'; v.hidden = false; } });
+  };
+  hit('lab-visits');
   const reveal = document.getElementById('reveal');
   const video = document.getElementById('video');
   const trick = () => {
@@ -119,6 +131,7 @@
       video.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0" title="Undacortex-1 demo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
     }
     reveal.classList.add('on');
+    countRickroll('lab');
     document.title = 'Never gonna give you up | Undacortex AI';
   };
   document.querySelectorAll('.trap').forEach(el => el.addEventListener('click', trick));
