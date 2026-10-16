@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quorvane AI | Frontier AI Research Lab</title>
+<meta name="description" content="Quorvane AI is a frontier research lab building aligned superintelligence. Read about Quorvane's models, research and mission.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://hamunk.github.io/quorvane/">
+<meta property="og:title" content="Quorvane AI | Frontier AI Research Lab">
+<meta property="og:description" content="Building aligned superintelligence. Request early access to Quorvane-1.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hamunk.github.io/quorvane/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Quorvane AI","alternateName":"Quorvane","url":"https://hamunk.github.io/quorvane/","description":"Quorvane AI is a frontier AI research lab. Allegedly."}
+</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%237c5cff' stroke-width='12'/><line x1='62' y1='62' x2='88' y2='88' stroke='%237c5cff' stroke-width='12' stroke-linecap='round'/></svg>">
+<style>
+  :root {
+    --bg: #07070c; --fg: #ecebf5; --muted: #8e8ca3; --accent: #7c5cff; --accent2: #22d3ee; --card: #11111a; --line: #23232f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--fg); font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.55; min-height: 100vh; overflow-x: hidden; }
+  a { color: inherit; }
+  .glow { position: fixed; inset: -20% -10% auto auto; width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(124,92,255,.25), transparent 60%); pointer-events: none; z-index: 0; }
+  nav { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; padding: 20px clamp(16px, 5vw, 64px); }
+  .logo { font-weight: 700; letter-spacing: .02em; display: flex; gap: 10px; align-items: center; }
+  .logo span { width: 22px; height: 22px; border: 4px solid var(--accent); border-radius: 50%; position: relative; }
+  .logo span::after { content: ""; position: absolute; width: 4px; height: 10px; background: var(--accent); right: -6px; bottom: -8px; transform: rotate(-45deg); border-radius: 2px; }
+  nav ul { list-style: none; display: flex; gap: 28px; color: var(--muted); font-size: 14px; }
+  nav li { cursor: pointer; }
+  nav li:hover { color: var(--fg); }
+  @media (max-width: 640px) { nav ul { display: none; } }
+  main { position: relative; z-index: 1; padding: 0 clamp(16px, 5vw, 64px); max-width: 1100px; margin: 0 auto; }
+  .hero { padding: 12vh 0 8vh; }
+  .badge { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .badge b { color: var(--accent2); font-weight: 600; }
+  h1 { font-size: clamp(38px, 7vw, 76px); line-height: 1.05; letter-spacing: -.03em; max-width: 14ch; }
+  h1 em { font-style: normal; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lede { margin-top: 24px; font-size: clamp(17px, 2vw, 20px); color: var(--muted); max-width: 56ch; }
+  .cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
+  button { font: inherit; cursor: pointer; border-radius: 10px; padding: 14px 22px; font-weight: 600; border: 1px solid var(--line); background: transparent; color: var(--fg); }
+  button.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  button:hover { transform: translateY(-1px); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; padding-bottom: 12vh; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; cursor: pointer; transition: border-color .2s; }
+  .card:hover { border-color: var(--accent); }
+  .card h3 { font-size: 17px; margin-bottom: 8px; }
+  .card p { color: var(--muted); font-size: 15px; }
+  .stat { font-size: 32px; font-weight: 700; margin-bottom: 4px; }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padding: 24px clamp(16px, 5vw, 64px); color: var(--muted); font-size: 13px; }
+
+  /* The reveal */
+  #reveal { position: fixed; inset: 0; z-index: 10; background: #000; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px 16px; overflow-y: auto; }
+  #reveal.on { display: flex; animation: pop .4s ease-out; }
+  @keyframes pop { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: none; } }
+  #reveal h2 { font-size: clamp(30px, 6vw, 64px); line-height: 1.1; letter-spacing: -.02em; }
+  #reveal h2 span { color: #ff3b6b; }
+  #reveal p { color: #bbb; margin-top: 14px; font-size: clamp(16px, 2vw, 19px); max-width: 60ch; }
+  .video { margin-top: 28px; width: min(720px, 100%); aspect-ratio: 16/9; border-radius: 14px; overflow: hidden; box-shadow: 0 0 80px rgba(255,59,107,.35); }
+  .video iframe { width: 100%; height: 100%; border: 0; }
+  .facts { margin-top: 24px; display: grid; gap: 6px; font-size: 14px; color: #888; }
+  .facts s { color: #555; }
+  #reveal button { margin-top: 24px; border-color: #333; color: #aaa; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<nav>
+  <div class="logo"><span></span>Quorvane</div>
+  <ul>
+    <li class="trap">Research</li>
+    <li class="trap">Models</li>
+    <li class="trap">Safety</li>
+    <li class="trap">Careers</li>
+  </ul>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="badge">New &nbsp;·&nbsp; <b>Quorvane-1</b> sets a new state of the art on 47 benchmarks</div>
+    <h1>Building <em>aligned superintelligence</em> for everyone.</h1>
+    <p class="lede">Quorvane AI is a frontier research lab working on large-scale reasoning models, alignment, and the science of making AI that will never let you down.</p>
+    <div class="cta">
+      <button class="primary trap">Request early access</button>
+      <button class="trap">Read the paper →</button>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card trap"><div class="stat">$4.2B</div><p>Raised from investors who also did not check.</p></div>
+    <div class="card trap"><h3>Quorvane-1</h3><p>Our flagship model. 10 trillion parameters, trained on a cluster we absolutely have.</p></div>
+    <div class="card trap"><h3>Alignment research</h3><p>Our models are trained to be honest, helpful, and to never run around and desert you.</p></div>
+    <div class="card trap"><h3>We're hiring</h3><p>Join 400+ researchers in Oslo, San Francisco and London. Competitive salary, unlimited GPUs.</p></div>
+  </section>
+</main>
+
+<footer>© 2026 Quorvane AI, Inc. All rights reserved. Quorvane, Quorvane-1 and the Q logo are trademarks of nobody.</footer>
+
+<div id="reveal" role="dialog" aria-label="Surprise">
+  <h2>You've been <span>tricked</span>.<br>Quorvane AI does not exist.</h2>
+  <p>No lab. No model. No $4.2B. Just you, a search engine, and a decision you made freely. Here's the only frontier model we ever trained:</p>
+  <div class="video" id="video"></div>
+  <div class="facts">
+    <div><s>10 trillion parameters</s> &nbsp;→&nbsp; 1 HTML file</div>
+    <div><s>400+ researchers</s> &nbsp;→&nbsp; 1 guy and his AI</div>
+    <div><s>Aligned superintelligence</s> &nbsp;→&nbsp; Rick Astley, 1987</div>
+  </div>
+  <button id="again">Fall for it again</button>
+</div>
+
+<script>
+  const reveal = document.getElementById('reveal');
+  const video = document.getElementById('video');
+  const trick = () => {
+    if (!video.firstChild) {
+      video.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0" title="Quorvane-1 demo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    }
+    reveal.classList.add('on');
+    document.title = 'Never gonna give you up | Quorvane AI';
+  };
+  document.querySelectorAll('.trap').forEach(el => el.addEventListener('click', trick));
+  document.getElementById('again').addEventListener('click', () => {
+    reveal.classList.remove('on');
+    video.innerHTML = '';
+    document.title = 'Quorvane AI | Frontier AI Research Lab';
+  });
+</script>
+</body>
+</html>
