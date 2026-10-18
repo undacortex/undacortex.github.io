@@ -114,7 +114,7 @@
 </div>
 
 <script>
-  const NS = 'undacortex-hm';
+  const NS = 'undacortex-hm2';
   const noTrack = (() => { try { if (new URLSearchParams(location.search).has('me')) localStorage.setItem('uc-me', '1'); return localStorage.getItem('uc-me') === '1'; } catch (e) { return false; } })();
   const hit = key => noTrack ? Promise.resolve(null) : fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + key).then(r => r.json()).then(j => j.value).catch(() => null);
   let counted = false;
